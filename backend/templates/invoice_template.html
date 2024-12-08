@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; height: 100%; }
+        .invoice-container { width: 210mm; height: 297mm; margin: 0 auto; padding: 20mm; box-sizing: border-box; border: 1px solid #ddd; display: flex; flex-direction: column; justify-content: space-between; }
+        .invoice-header { display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+        .company-details { text-align: left; }
+        .company-details h2 { margin: 0; font-size: 18px; }
+        .company-details p { margin: 2px 0; font-size: 14px; }
+        .invoice-title { text-align: right; }
+        .invoice-title h1 { margin: 0; font-size: 24px; }
+        .invoice-details { margin-bottom: 20px; }
+        .invoice-details div { display: flex; justify-content: space-between; }
+        .invoice-details div p { margin: 4px 0; font-size: 14px; }
+        .invoice-table, .total-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .invoice-table th, .invoice-table td, .total-table th, .total-table td { border: 1px solid #ddd; padding: 8px; }
+        .invoice-table th, .total-table th { background-color: #f5f5f5; }
+        .invoice-table th, .invoice-table td { text-align: left; }
+        .total-table th, .total-table td { text-align: right; }
+        .footer { text-align: center; margin-top: 20px; font-size: 12px; color: #555; }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <header class="invoice-header">
+            <div class="company-details">
+                <h2>VIDWAT ASSOCIATES</h2>
+                <p>#33, ARVIND NAGAR</p>
+                <p>NEAR VEER SAVARKAR CIRCLE, BEGUM TALAB ROAD</p>
+                <p>VIJAYAPUR 586101</p>
+                <p>Karnataka, India</p>
+                <p>PAN: AAZFV2824J</p>
+                <p>Email: vidwatassociates@gmail.com</p>
+                <p>Phone: 7892787084</p>
+            </div>
+            <div class="invoice-title">
+                <h1>INVOICE</h1>
+                <p>Original for Customer</p>
+            </div>
+        </header>
+        <section class="invoice-details">
+            <div>
+                <p><strong>Invoice #: </strong>{{invoice_num}}</p>
+                <p><strong>Invoice Date:</strong>{{invoice_date}}</p>
+                <p><strong>Place of Supply:</strong> [KA] - Karnataka</p>
+            </div>
+            <div class="flex-container">
+                <div class="bill-to">
+                    <p><strong>Bill To:</strong></p>
+                    <p>{{bill_to}}</p>
+                    <p>Karnataka, India</p>
+                </div>
+                <div class="ship-to">
+                    <p><strong>Ship To:</strong></p>
+                    <p>{{ship_to}}</p>
+                    <p>Karnataka, India</p>
+                </div>
+            </div>
+        </section>
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Item & Description</th>
+                    <th>HSN/SAC</th>
+                    <th>Tax%</th>
+                    <th>Qty.</th>
+                    <th>Rate/Item</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each items}}
+                <tr>
+                    <td>{{@index}}</td>
+                    <td>{{item_desc}}</td>
+                    <td>{{hsn_sac}}</td>
+                    <td>{{tax}}</td>
+                    <td>{{qty}}</td>
+                    <td>{{rate_item}}</td>
+                    <td>{{amount}}</td>
+                </tr>
+                {{items}}
+            </tbody>
+        </table>
+        <div class="footer">
+            <p>Amount Chargeable (in Words): Rupees Two Thousand Only</p>
+            <p>E & O E</p>
+            <p>Authorized Signatory</p>
+        </div>
+    </div>
+</body>
+</html>
