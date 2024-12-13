@@ -6,6 +6,7 @@ const InvoiceForm = () => {
     invoice_num: "",
     bill_to: "",
     ship_to: "",
+    gst_num: "", // Added gst_num
     items: [
       {
         item_desc: "",
@@ -44,7 +45,7 @@ const InvoiceForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await axios.post(
         "http://localhost:5000/api/generate-invoice",
@@ -53,28 +54,27 @@ const InvoiceForm = () => {
           responseType: "blob", // Important for handling binary data
         }
       );
-  
+
       // Create a Blob from the PDF
       const blob = new Blob([response.data], { type: "application/pdf" });
-  
+
       // Create a link element for downloading
       const link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
       link.download = `invoice_${formData.invoice_num}.pdf`;
-  
+
       // Programmatically click the link to trigger download
       link.click();
-  
+
       alert("Invoice generated and downloaded successfully!");
     } catch (error) {
       console.error("Error generating invoice: ", error);
       alert("Error generating invoice.");
     }
   };
-  
+
   return (
     <div className="min-h-screen bg-blue-500 flex items-center justify-center p-6">
-
       {/* Container */}
       <div className="bg-white shadow-lg rounded-xl w-full max-w-3xl p-8 space-y-6">
         {/* Header with Logo */}
@@ -122,6 +122,18 @@ const InvoiceForm = () => {
                 type="text"
                 name="ship_to"
                 value={formData.ship_to}
+                onChange={handleChange}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-600">
+                GST Number:
+              </label>
+              <input
+                type="text"
+                name="gst_num"
+                value={formData.gst_num} // Correct field
                 onChange={handleChange}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               />
