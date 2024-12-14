@@ -127,8 +127,18 @@ app.post("/api/generate-invoice", (req, res) => {
       x += colWidths[i];
     });
   };
+// First Table: Item Details
+function drawBoldRow(columns, y) {
+  let x = margin;
+    columns.forEach((col, i) => {
+      doc.rect(x, y, colWidths[i], rowHeight).stroke();
+      doc.text(col, x + 5, y + 5, { width: colWidths[i] - 10, align: "left" });
+      x += colWidths[i];
+    });
+}
 
-drawRow(["SL", "ITEM DESCRIPTION", "RATE/ITEM", "QUANTITY", "AMOUNT"], tableStartY);
+
+drawBoldRow(["SL", "ITEM DESCRIPTION", "RATE/ITEM", "QUANTITY", "AMOUNT"], tableStartY);
 tableStartY += rowHeight;
 
 items.forEach((item, index) => {
@@ -151,7 +161,7 @@ tableStartY += rowHeight; // Add vertical gap between tables
 
 // Second Table: Tax Summary
 
-drawRow(["SL", "HSN/SAC", "TAX%", "AMOUNT"], tableStartY);
+drawBoldRow(["SL", "HSN/SAC", "TAX%", "AMOUNT"], tableStartY);
 tableStartY += rowHeight;
 
 items.forEach((item, index) => {
