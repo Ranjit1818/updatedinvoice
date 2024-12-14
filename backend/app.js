@@ -78,7 +78,7 @@ app.post("/api/generate-invoice", (req, res) => {
   doc.fontSize(10)
     .font("Helvetica-Bold")
     .text(`Invoice No: ${invoice_num}`, pageWidth - margin - 100, 80, { align: "center" })
-.text(`Invoice Date: ${new Date().toLocaleDateString("en-GB")}`, pageWidth - margin - 135, 95, { align: "center" });
+.text(`Invoice Date: ${new Date().toLocaleDateString("en-GB")}`, pageWidth - margin - 138, 95, { align: "center" });
     doc.moveTo(margin, 160).lineTo(pageWidth - margin, 160).stroke();
 
     // Draw border for "Bill To" and "Ship To" sections
@@ -221,9 +221,9 @@ doc.font("Helvetica-Bold").text(amountInWords, margin + thirdTableColWidths[0] +
     .text("3.This invoice is subjected to the terms and conditions mentioned in the agreement or work order", pageWidth  - 530, footerY + 142, { align: "left" });
    
     // Add Authorized Sign text
-doc.fontSize(12)
+doc.fontSize(8)
    .font("Helvetica-Bold")
-   .text("Authorized Signatory", pageWidth - margin - 150, footerY + 200, {
+   .text("Authorized Signatory", pageWidth - margin - 150, footerY + 250, {
        align: "center"
    });
 
