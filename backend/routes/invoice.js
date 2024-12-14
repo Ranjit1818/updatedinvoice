@@ -8,7 +8,7 @@ router.post("/generate-invoice", async (req, res) => {
         const pdfBuffer = await generateInvoicePDF(invoiceData);
 
         // Send the PDF as a response
-        res.set({
+        res.status(200).set({
             "Content-Type": "application/pdf",
             "Content-Disposition": `attachment; filename=invoice_${invoiceData.invoice_num}.pdf`,
         });
