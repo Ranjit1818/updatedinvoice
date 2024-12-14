@@ -78,7 +78,7 @@ app.post("/api/generate-invoice", (req, res) => {
   doc.fontSize(10)
     .font("Helvetica-Bold")
     .text(`Invoice No: ${invoice_num}`, pageWidth - margin - 100, 80, { align: "center" })
-.text(`Invoice Date: ${new Date().toLocaleDateString("en-GB")}`, pageWidth - margin - 138, 95, { align: "center" });
+.text(`Invoice Date: ${new Date().toLocaleDateString("en-GB")}`, pageWidth - margin - 140, 95, { align: "center" });
     doc.moveTo(margin, 160).lineTo(pageWidth - margin, 160).stroke();
 
     // Draw border for "Bill To" and "Ship To" sections
@@ -223,7 +223,7 @@ doc.font("Helvetica-Bold").text(amountInWords, margin + thirdTableColWidths[0] +
     // Add Authorized Sign text
 doc.fontSize(8)
    .font("Helvetica-Bold")
-   .text("Authorized Signatory", pageWidth - margin - 150, footerY + 250, {
+   .text("Authorized Signatory", pageWidth - margin - 150, footerY + 220, {
        align: "center"
    });
 
